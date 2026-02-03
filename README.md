@@ -3,6 +3,42 @@
 
 OncoInfer is a Flask-based inference service built on a deep-learning model for tumor-type prediction using targeted clinical genomic sequencing data. It accepts molecular-feature JSON payloads or feature-table uploads, runs the deep learning inference pipeline, and returns structured JSON predictions. The service also includes a React frontend portal and can be integrated with clinical or pathology portals to render predictions in downstream workflows.
 
+## Architecture Snapshot
+
+```mermaid
+flowchart LR
+  C["Frontend / Portal"] --> A["Flask API"]
+  A --> I{"Input"}
+  I -->|JSON| E["Feature Engineering"]
+  I -->|CSV| T["Feature Table"]
+  E --> T
+  T --> D["Deep Learning Classifier"]
+  D --> F["Response Formatter"]
+  F --> O["Prediction JSON"]
+  O --> C
+```
+
+## UI Preview
+
+![OncoInfer UI](docs/images/oncoinfer-ui.png)
+
+## Table of Contents
+
+- [Tech Stack](#tech-stack)
+- [Architecture Snapshot](#architecture-snapshot)
+- [Key Capabilities](#key-capabilities)
+- [System Architecture](#system-architecture)
+- [Repository Layout](#repository-layout)
+- [API Contract](#api-contract)
+- [Local Development](#local-development)
+- [Testing](#testing)
+- [Docker](#docker)
+- [Frontend (OncoInfer Portal)](#frontend-oncoinfer-portal)
+- [Example API Usage](#example-api-usage)
+- [Example Files](#example-files)
+- [Notes on Large Artifacts](#notes-on-large-artifacts)
+- [Model References](#model-references)
+
 ## Tech Stack
 
 - Backend: Python, Flask, Gunicorn
@@ -21,21 +57,11 @@ OncoInfer is a Flask-based inference service built on a deep-learning model for 
 
 ## System Architecture
 
-- API layer: Flask endpoints (`/classify/<version>`, `/health`)
-- Feature engineering: `libraries/parse_dmp_json.py`
-- Inference execution: `libraries/run_gdd_single.py`
-- Output formatting: `libraries/write_output_json.py`
-- Model/runtime assets: stored under `libraries/` and loaded at inference time
-
-Inference workflow:
-
-`Input JSON/CSV -> Feature Parsing -> Deep Learning Inference -> Output Formatting -> API JSON Response`
-
-1. Receive either molecular-feature JSON or a precomputed feature CSV.
-2. Convert JSON input into model features (`parse_dmp_json.py`) when needed.
-3. Run model inference and generate raw prediction output (`run_gdd_single.py`).
-4. Transform model output into API response format (`write_output_json.py`).
-5. Return structured JSON for frontend display or portal integration.
+- API layer handles endpoint routing, validation, and request orchestration.
+- Input supports molecular-feature JSON or precomputed feature CSV.
+- Processing pipeline performs feature engineering, deep-learning inference, and response formatting.
+- Output is a structured prediction JSON consumed by frontend and portal integrations.
+- Model/reference artifacts are loaded from `libraries/` at runtime.
 
 ## Repository Layout
 

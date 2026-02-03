@@ -1,0 +1,10 @@
+flowchart LR
+  U["React UI or Clinical Portal"] --> A["Flask API: POST /classify/{version}"]
+  A --> I{"Input type"}
+  I -->|JSON| P["Feature parsing: parse_dmp_json.py"]
+  I -->|CSV| F["Feature table"]
+  P --> F
+  F --> M["Deep learning inference: run_gdd_single.py"]
+  M --> O["Output formatting: write_output_json.py"]
+  O --> R["Prediction JSON: results + feature_list"]
+  R --> U

@@ -1,0 +1,44 @@
+flowchart TB
+  subgraph Client["Client Layer"]
+    UI["OncoInfer React Portal"]
+    CP["Clinical and Pathology Portals"]
+  end
+
+  subgraph Service["Web Service Layer"]
+    EP["POST /classify/{version}"]
+    HC["GET /health"]
+    DOC["GET /openapi and /docs"]
+    ORCH["Inference orchestrator"]
+  end
+
+  subgraph Pipeline["Deep Learning Tumor Classification Pipeline"]
+    IN["JSON input or CSV input"]
+    FE["Feature engineering: parse_dmp_json.py"]
+    INF["Ensemble inference: run_gdd_single.py"]
+    EXP["Top feature attribution (SHAP)"]
+    OUT["Response formatter: write_output_json.py"]
+    RES["Structured prediction JSON"]
+  end
+
+  subgraph Artifacts["Model and Reference Artifacts"]
+    A1["ensemble.pt"]
+    A2["gddnn_kmeans_output.bz2"]
+    A3["gr37.fasta and gr37.fasta.fai"]
+    A4["feature annotation tables"]
+  end
+
+  UI --> EP
+  CP --> EP
+  UI --> HC
+  UI --> DOC
+  EP --> ORCH --> IN
+  IN --> FE --> INF --> OUT --> RES
+  IN --> INF
+  INF --> EXP --> OUT
+  RES --> UI
+  RES --> CP
+  A1 --> INF
+  A2 --> EXP
+  A3 --> FE
+  A4 --> FE
+  A4 --> OUT
