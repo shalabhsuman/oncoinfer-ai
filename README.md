@@ -5,7 +5,8 @@ OncoInfer is a Flask-based inference service built on a deep-learning model for 
 
 ## Architecture Snapshot
 
-![OncoInfer Architecture](docs/images/oncoinfer_architecture.png)
+<img src="docs/images/oncoinfer_architecture.png" alt="OncoInfer Architecture" width="280" height="444" />
+
 
 ## UI Preview
 
