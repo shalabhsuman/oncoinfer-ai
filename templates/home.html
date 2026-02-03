@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form class="navbar-form" action="{{ url_for('classify', version=1) }}" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+        <label labelfor="feature_file">Upload a feature CSV and click Run</label>
+        <input id="feature_file" type="file" name="features">
+        <input type="submit" value="Run">
+    </div>
+</form>
+<br />OncoInfer legacy upload page. For the modern UI, use the React portal in <code>frontend/</code>.
+{% endblock %}

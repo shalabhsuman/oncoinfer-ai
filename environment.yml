@@ -1,0 +1,20 @@
+name: oncoinfer
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.10
+  - flask
+  - pandas
+  - numpy
+  - scipy
+  - scikit-learn
+  - scikit-optimize
+  - pytorch
+  - shap
+  - joblib
+  - pyfaidx
+  - pybedtools
+  - bedtools
+  - gunicorn
+  - pytest

@@ -1,0 +1,4 @@
+[submodule "MolecularDiagnosis"]
+	path = MolecularDiagnosis
+	url = https://github.com/mskcc/MolecularDiagnosis.git
+	branch = master

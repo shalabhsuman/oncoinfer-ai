@@ -1,0 +1,159 @@
+:root {
+  --bg: #f4f7f4;
+  --panel: #ffffff;
+  --ink: #0f1f17;
+  --muted: #4e5f55;
+  --accent: #0b6b4b;
+  --accent-soft: #d9efe5;
+  --danger: #9a2a2a;
+  --border: #d6e1da;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  background: radial-gradient(circle at top left, #edf7f2 0%, var(--bg) 45%, #eef1f7 100%);
+  color: var(--ink);
+}
+
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 16px 36px;
+}
+
+.hero h1 {
+  margin: 6px 0;
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  margin: 0;
+}
+
+.subtitle {
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+.model-note {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.model-note a {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.panel {
+  margin-top: 16px;
+  padding: 16px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(3, 26, 14, 0.06);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  margin: 10px 0 6px;
+}
+
+input,
+select,
+textarea,
+button {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 0.95rem;
+}
+
+textarea {
+  min-height: 240px;
+  resize: vertical;
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+}
+
+button {
+  margin-top: 12px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.secondary-button {
+  background: #eef5f0;
+  color: var(--ink);
+  border: 1px solid var(--border);
+}
+
+.stop-button {
+  background: #8a1f1f;
+}
+
+.timer {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+pre {
+  margin: 0;
+  padding: 12px;
+  border-radius: 10px;
+  background: #0f1a14;
+  color: #ebfff3;
+  overflow-x: auto;
+  font-size: 0.86rem;
+}
+
+.csv-preview {
+  max-height: 220px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.error {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 14px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+@media (max-width: 720px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

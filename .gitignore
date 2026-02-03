@@ -1,0 +1,25 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Local tooling
+.vscode/
+.DS_Store
+
+# Runtime output and logs
+log/
+runtime/
+*.log
+stderr.log
+
+# Intermediate files collected during runtime
+data/features_*
+
+# Large model/reference artifacts
+libraries/*.pt
+libraries/*.fasta
+libraries/*.fai
+libraries/*.bz2
+
+# Legacy local artifacts
+._feature_annotations_*

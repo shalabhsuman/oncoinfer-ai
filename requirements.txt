@@ -1,0 +1,12 @@
+Flask>=2.3,<4
+gunicorn>=21
+pandas>=1.5
+numpy>=1.24
+torch>=2.0
+shap>=0.41
+joblib>=1.2
+pybedtools>=0.9
+pyfaidx>=0.7
+scikit-learn>=1.2
+scikit-optimize>=0.9
+scipy>=1.10
