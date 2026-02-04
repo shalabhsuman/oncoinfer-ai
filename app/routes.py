@@ -1,9 +1,18 @@
+import json
+from pathlib import Path
+
 from flask import Flask, Response, jsonify, render_template, request
 
 from app.services.inference_service import InferenceError, run_inference
 
 
 def register_routes(app: Flask) -> None:
+    sample_payload_path = Path(__file__).resolve().parent.parent / "examples" / "input" / "sample_request.json"
+    try:
+        sample_request_payload = json.loads(sample_payload_path.read_text(encoding="utf-8"))
+    except Exception:
+        sample_request_payload = {"meta-data": {"dmp_sample_id": "SAMPLE_DEMO_001_IM7"}}
+
     openapi_spec = {
         "openapi": "3.0.3",
         "info": {
@@ -32,7 +41,10 @@ def register_routes(app: Flask) -> None:
                     "requestBody": {
                         "required": True,
                         "content": {
-                            "application/json": {"schema": {"type": "object"}},
+                            "application/json": {
+                                "schema": {"type": "object"},
+                                "example": sample_request_payload,
+                            },
                             "multipart/form-data": {
                                 "schema": {
                                     "type": "object",
